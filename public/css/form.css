@@ -1,0 +1,202 @@
+input {
+  outline: none;
+}
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=date],
+select,
+textarea,
+button {
+  outline: none;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=date]:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  border-color: #4ADDB9;
+  color: #4ADDB9;
+}
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=date] {
+  width: 100%;
+  height: 35px;
+  padding: 0 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #909090;
+  border-radius: 2px;
+  font-size: 1em;
+  color: #212121;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=date]:focus {
+  border-color: #4ADDB9;
+  color: #4ADDB9;
+}
+input[type=text]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder,
+input[type=email]::-webkit-input-placeholder,
+input[type=number]::-webkit-input-placeholder,
+input[type=date]::-webkit-input-placeholder {
+  font-family: 'Lato', sans-serif;
+  color: #909090;
+}
+input[type=text]:-ms-input-placeholder,
+input[type=password]:-ms-input-placeholder,
+input[type=email]:-ms-input-placeholder,
+input[type=number]:-ms-input-placeholder,
+input[type=date]:-ms-input-placeholder {
+  font-family: 'Lato', sans-serif;
+  color: #909090;
+}
+input[type=text]::-ms-input-placeholder,
+input[type=password]::-ms-input-placeholder,
+input[type=email]::-ms-input-placeholder,
+input[type=number]::-ms-input-placeholder,
+input[type=date]::-ms-input-placeholder {
+  font-family: 'Lato', sans-serif;
+  color: #909090;
+}
+input[type=text]::placeholder,
+input[type=password]::placeholder,
+input[type=email]::placeholder,
+input[type=number]::placeholder,
+input[type=date]::placeholder {
+  font-family: 'Lato', sans-serif;
+  color: #909090;
+}
+input[type=text]:disabled {
+  border: none;
+  color: #909090;
+}
+input[type=submit],
+input[type=reset],
+button,
+.btn {
+  padding: 5px 25px;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  border: none;
+  background-color: #4ADDB9;
+}
+input[type=submit].secondary,
+input[type=reset].secondary,
+button.secondary,
+.btn.secondary {
+  background-color: #67E2FF;
+}
+input[type=submit] {
+  float: right;
+}
+select {
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  background-color: #F5F5F5;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+}
+textarea {
+  width: 100%;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #909090;
+  border-radius: 2px;
+  resize: vertical;
+  font-size: 1em;
+  vertical-align: top;
+}
+.form-group {
+  margin-bottom: 25px;
+}
+.form-group:last-child {
+  margin-bottom: 0;
+}
+.form-table,
+.table {
+  max-width: 800px;
+}
+.form-table .tr,
+.table .tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+.form-table .tr:first-child,
+.table .tr:first-child {
+  background-color: #F5F5F5;
+}
+.form-table .tr .th,
+.table .tr .th,
+.form-table .tr .td,
+.table .tr .td {
+  min-height: 35px;
+  padding: 2px 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  line-height: 35px;
+}
+.form-table .tr .th,
+.table .tr .th {
+  color: #4ADDB9;
+}
+.form-table .tr .td,
+.table .tr .td {
+  border: 1px solid #F5F5F5;
+  border-top: none;
+  border-right: none;
+}
+.form-table .tr .td.label,
+.table .tr .td.label {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 25%;
+          flex: 0 1 25%;
+}
+.form-table .tr .td.label:only-child,
+.table .tr .td.label:only-child {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 100%;
+          flex: 0 1 100%;
+}
+.form-table .tr .td.big,
+.table .tr .td.big {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 0 100%;
+          flex: 2 0 100%;
+  border-right: 1px solid #F5F5F5;
+}
+.form-table .tr .td:last-child,
+.table .tr .td:last-child {
+  border-right: 1px solid #F5F5F5;
+}
+.form-table .tr .td.label + .td:nth-child(3n+0),
+.table .tr .td.label + .td:nth-child(3n+0) {
+  border-right: 1px solid #F5F5F5;
+}

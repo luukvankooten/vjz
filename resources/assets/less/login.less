@@ -1,0 +1,38 @@
+@import (reference) '_variables.less';
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+form.login {
+  width: 320px;
+  margin: 0 auto;
+  padding: @gap-primary;
+  background: white;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.31);
+
+  label {
+    display: none;
+  }
+
+  .login-error {
+    padding: @gap-quaternary 0;
+    background-color: #FFF2F2;
+    border: 1px solid #FC7474;
+    border-radius: @gap-quinary;
+    color: #FC7474;
+    text-align: center;
+  }
+}
+
+img.background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -10;
+  filter: blur(5px);
+}

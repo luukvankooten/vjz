@@ -1,0 +1,154 @@
+@import (reference) '_variables.less';
+
+input {
+  outline: none;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=date],
+select,
+textarea,
+button {
+  outline: none;
+
+  &:focus {
+    border-color: @color-primary;
+    color: @color-primary;
+  }
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=date]  {
+  width: 100%;
+  height: 35px;
+  padding: 0 @gap-tertiary;
+  box-sizing: border-box;
+  border: 1px solid @color-quaternary;
+  border-radius: @gap-quinary;
+  font-size: 1em;
+  color: @color-tertiary;
+
+  &:focus {
+    border-color: @color-primary;
+    color: @color-primary;
+  }
+
+  &::placeholder {
+    font-family: 'Lato', sans-serif;
+    color: @color-quaternary;
+  }
+}
+
+input[type=text]:disabled {
+  border: none;
+  color: @color-quaternary;
+}
+
+input[type=submit],
+input[type=reset],
+button,
+.btn {
+  padding: @gap-quaternary @gap-primary;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  border: none;
+  background-color: @color-primary;
+
+  &.secondary {
+    background-color: @color-secondary;
+  }
+}
+
+input[type=submit] {
+  float: right;
+}
+
+select {
+  width: 100%;
+  height: 100%;
+  padding: 0 @gap-tertiary;
+  background-color: #F5F5F5;
+  appearance: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+textarea {
+  width: 100%;
+  padding: @gap-quaternary;
+  box-sizing: border-box;
+  border: 1px solid @color-quaternary;
+  border-radius: @gap-quinary;
+  resize: vertical;
+  font-size: 1em;
+  vertical-align: top;
+}
+
+.form-group {
+  margin-bottom: @gap-primary;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-table, .table {
+  max-width: 800px;
+  .tr {
+    display: flex;
+    flex-flow: row wrap;
+
+    &:first-child {
+      background-color: #F5F5F5;
+    }
+    .th, .td {
+      min-height: 35px;
+      padding: @gap-quinary @gap-quaternary;
+      flex: 1;
+      box-sizing: border-box;
+      line-height: 35px;
+    }
+
+    .th {
+      color: @color-primary;
+    }
+
+    .td {
+      border: 1px solid #F5F5F5;
+      border-top: none;
+      border-right: none;
+
+      &.label {
+        flex: 0 1 25%;
+
+        &:only-child {
+          flex: 0 1 100%;
+        }
+      }
+
+      &.big {
+        flex: 2 0 100%;
+        border-right: 1px solid #F5F5F5;
+      }
+
+      &:last-child {
+        border-right: 1px solid #F5F5F5;
+      }
+    }
+
+    .td.label + .td:nth-child(3n+0) {
+      border-right: 1px solid #F5F5F5;
+    }
+
+  }
+}
