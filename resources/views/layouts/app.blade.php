@@ -18,7 +18,7 @@
     @yield('stylesheets')
 
 </head>
-<body class="loggedin">
+<body class="{{ auth()->check()? 'loggedin' : ''}}">
 
 @include('layouts.panel')
 @include('layouts.header')
@@ -28,10 +28,8 @@
 </main>
 
 <!-- Scripts -->
-<script type="text/javascript" src="{{ asset('js/Vue.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jQuery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/components.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

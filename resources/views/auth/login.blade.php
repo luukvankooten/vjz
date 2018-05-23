@@ -70,9 +70,5 @@
     </div>
 </form>
 <img class="background" src="/images/background-epd.png">
-<!-- Scripts -->
-<script type="text/javascript" src="{{ asset('js/jQuery.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
-
 </body>
 </html>

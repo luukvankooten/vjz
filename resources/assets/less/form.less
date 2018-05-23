@@ -68,8 +68,11 @@ button,
   }
 }
 
-input[type=submit] {
+input[type=submit],
+button {
   float: right;
+  margin-right: @gap-quaternary;
+  &:last-child { margin-right: 0; }
 }
 
 select {
@@ -86,12 +89,22 @@ select {
 textarea {
   width: 100%;
   padding: @gap-quaternary;
-  box-sizing: border-box;
+  //box-sizing: border-box;
   border: 1px solid @color-quaternary;
   border-radius: @gap-quinary;
   resize: vertical;
   font-size: 1em;
   vertical-align: top;
+
+  &:disabled
+  {
+    display: block;
+    height: auto;
+    font-family: monospace;
+    color: black;
+    background-color: #F5F5F5;
+    resize: none;
+  }
 }
 
 .form-group {
@@ -111,8 +124,10 @@ textarea {
     &:first-child {
       background-color: #F5F5F5;
     }
+
+    &.none { background: none; }
     .th, .td {
-      min-height: 35px;
+      max-height: 39px;
       padding: @gap-quinary @gap-quaternary;
       flex: 1;
       box-sizing: border-box;
@@ -134,6 +149,14 @@ textarea {
         &:only-child {
           flex: 0 1 100%;
         }
+      }
+
+      &.description
+      {
+        height: 15px;
+        flex: 2 0 100%;
+        color: #757575;
+        line-height: 15px;
       }
 
       &.big {

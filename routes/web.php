@@ -114,6 +114,16 @@ Route::prefix('aandoeningen')->group(function (){
 
     Route::post('/', 'DiseaseController@store');
 });
+/*
+ * Admin Routes
+ */
+Route::prefix('oauth2')->group(function() {
+    Route::get('/', [
+        'uses' => 'AdminController@index',
+        'icon' => 'fa fa-server',
+        'as' => 'Oauth2'
+    ]);
+});
 
 /*
  * Login routes
@@ -122,6 +132,8 @@ Route::prefix('login')->group(function (){
     Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/', 'Auth\LoginController@login');
 });
+
+
 
 /*
  * Logout route

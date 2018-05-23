@@ -17,6 +17,7 @@
         "laravel-mix": "^2.0",
         "less": "^3.0.1",
         "less-loader": "^4.1.0",
+        "lodash": "^4.17.10",
         "vue": "^2.5.7",
         "webpack-livereload-plugin": "^2.1.1"
     },
