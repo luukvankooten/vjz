@@ -12,3 +12,7 @@
         </div>
     </section>
 @endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/O2auth.js') }}"></script>
+@endsection

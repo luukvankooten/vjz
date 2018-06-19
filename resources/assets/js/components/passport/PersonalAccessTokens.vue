@@ -87,9 +87,10 @@
                     <div class="tr">
                         <div class="td big auto-height">
                             <p>
-                                Here is your new personal access token. This is the only time it will be shown so don't
-                                lose it!
-                                You may now use this token to make API requests.
+                                Hier is de jouw nieuwe pesonlijke toegankelijksheids token.
+                                Dit is de enige keer dat je het kan inzien,
+                                verlies hem niet.
+                                Je kan nu de token gebruiken om een uit de API uit te putten.
                             </p>
                         </div>
                     </div>

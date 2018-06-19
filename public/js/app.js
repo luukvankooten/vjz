@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,35 +73,86 @@
 /* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(10);
-__webpack_require__(11);
-__webpack_require__(12);
-module.exports = __webpack_require__(13);
+__webpack_require__(13);
+__webpack_require__(14);
+__webpack_require__(15);
+module.exports = __webpack_require__(16);
 
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-new Vue({ el: '#logout' });
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+window.vjz = new Vue({
+    el: '#container',
+    data: {
+        expand: true
+    },
+    methods: {
+        toggle: function toggle() {
+            this.expand = !this.expand;
+        },
+        subMenu: function subMenu(event) {
+            var clicked = event.path[0].classList;
+            var item = event.path[2].querySelector('.expand-content').classList;
+            var prefix = 'fa-caret-';
+            if (clicked.contains(prefix + 'down')) {
+                clicked.remove(prefix + 'down');
+                clicked.add(prefix + 'up');
+            } else {
+                clicked.remove(prefix + 'up');
+                clicked.add(prefix + 'down');
+            }
+
+            if (item.contains('expand')) {
+                item.remove('expand');
+            } else {
+                item.add('expand');
+            }
+        },
+        mobile: function mobile() {
+            var _this = this;
+            var width = document.querySelector('html').offsetWidth;
+            window.addEventListener('resize', function () {
+
+                if (width < 1025) {
+                    _this.expand = false;
+                } else {
+                    _this.expand = true;
+                }
+            });
+
+            if (width < 1025) {
+                this.expand = false;
+            }
+        }
+    },
+
+    beforeMount: function beforeMount() {
+        this.mobile();
+    }
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

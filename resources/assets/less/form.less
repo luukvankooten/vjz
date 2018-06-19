@@ -54,6 +54,7 @@ input[type=submit],
 input[type=reset],
 button,
 .btn {
+  display: inline;
   padding: @gap-quaternary @gap-primary;
   color: white;
   border-radius: 50px;
@@ -89,7 +90,7 @@ select {
 textarea {
   width: 100%;
   padding: @gap-quaternary;
-  //box-sizing: border-box;
+  box-sizing: border-box;
   border: 1px solid @color-quaternary;
   border-radius: @gap-quinary;
   resize: vertical;
@@ -107,7 +108,23 @@ textarea {
   }
 }
 
-.form-group {
+.upload-box {
+  position: relative;
+  display: inline-block;
+
+  label { cursor: pointer; }
+
+  div.btn {
+    i.fa {
+      display: unset;
+      font-size: 1rem;
+    }
+  }
+  span { word-break: break-word; }
+  input[type=file] { display: none; }
+}
+
+.form-group, .group {
   margin-bottom: @gap-primary;
 
   &:last-child {

@@ -50,6 +50,15 @@ class PermissionSeeder extends Seeder
             ],
             [
                 'Name' => 'Koppelen'
+            ],
+            [
+                'Name' => 'Agenda'
+            ],
+            [
+                'Name' => 'Statistieken'
+            ],
+            [
+                'Name' => 'Beeldbank'
             ]
         ]);
     }

@@ -30,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::routes();
 
+        Passport::tokensCan([
+            'app-login' => 'Use the app',
+        ]);
+
         if (Schema::hasTable('permission_role')) {
             foreach (Permission::getPermissions() as $permission) {
                 Gate::define(strtolower($permission->name), function ($user) use ($permission) {
