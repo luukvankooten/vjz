@@ -55,7 +55,8 @@ class RegisterUserController extends Controller
     public function store(Request $request)
     {
         $this->validator($request->all())->validate();
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($this->create($request->all())));
+
         return redirect('registreer')->with('status', 'Gebruiker met succes aangemaakt.');
     }
 
@@ -77,7 +78,7 @@ class RegisterUserController extends Controller
             'address.establishment' => 'sometimes|required|string|max:255',
             'address.street' => 'sometimes|required|string|max:255',
             'address.number' => 'sometimes|required|integer|digits_between:1,6',
-            'address.affix' => 'attach|nullable|string',
+            'address.addition' => 'attach|nullable|string',
             'address.zip' => 'sometimes|required|regex:/[0-9]{4}[A-Z]{2}/'
         ]);
     }
@@ -98,30 +99,48 @@ class RegisterUserController extends Controller
         ]);
 
         $user->assignRole($data['role']);
+        $this->createAddress($user, $data['address']);
+        $this->attach($user, $data);
 
-        if ($data['role'] === 'Gebruiker' && User::whereName($data['practitioner'])->first()->hasRole('Huisarts')) {
-            $name = User::whereName($data['practitioner'])->first()->id;
-            $user->practitioner()->attach($name);
-        }
-
-        if (!empty($data['group']) && !isset($data['address'])) {
+        if (!empty($data['group']) &&
+            !isset($data['address'])) {
             $group = Group::whereName($data['group'])->first();
             $user->address()->attach($group->address->first()->id);
             $user->groups()->attach($group->id);
         }
 
-        if (isset($data['address'])) {
-            $user->address()->save(
-                new Address([
-                    'establishment' => $data['address']['establishment'],
-                    'street' => $data['address']['street'],
-                    'number' => $data['address']['number'],
-                    'affix' => $data['address']['affix'],
-                    'zip' => $data['address']['zip'],
-                ])
-            );
-        }
-
         return $user;
+    }
+
+    /**
+     * Create address if isset.
+     *
+     * @param User $user
+     * @param array $data
+     * @return mixed
+     */
+    protected function createAddress(User $user, array $data)
+    {
+        return isset($data) ? $user->address()->save(new Address($data)) : null;
+    }
+
+    /**
+     * attach if user contain certain role.
+     *
+     * @param User $user
+     * @param array $data
+     * @return void
+     */
+    protected function attach(User $user, array $data)
+    {
+        switch ($data['role']) {
+            case 'Gebruiker':
+                $name = User::whereName($data['practitioner'])->first()->id;
+                $user->practitioner()->attach($name);
+                break;
+            case 'Verpleegkundige':
+                $user->createToken('App')->accessToken;
+                break;
+        }
     }
 }
