@@ -1,8 +1,10 @@
 <?php
+
 /*
  * Index as dashboard
  */
 Route::get('/', 'AuthController@index');
+
 
 /*
  * Consult routes
@@ -16,6 +18,43 @@ Route::prefix('consult')->group(function (){
     Route::post('/', 'ConsultController@store');
 });
 
+/*
+ * Agenda routes
+ */
+Route::prefix('agenda')->group(function (){
+    Route::get('/', [
+        'uses' => 'CalendarController@index',
+        'icon' => 'fa-calendar',
+    ]);
+});
+
+Route::prefix('Afspraak')->group(function () {
+    Route::get('/', [
+        'uses' => 'CalendarController@create',
+        'icon' => 'fa-calendar-plus-o'
+    ]);
+    Route::post('/', 'CalendarController@store');
+});
+
+/*
+ * Charts Routes
+ */
+Route::prefix('statistieken')->group(function (){
+    Route::get('/', [
+        'uses' => 'StaticController@index',
+        'icon' => 'fa-pie-chart',
+    ]);
+});
+
+/*
+ * Charts Routes
+ */
+Route::prefix('beeldbank')->group(function (){
+    Route::get('/', [
+        'uses' => 'FileController@index',
+        'icon' => 'fa-files-o',
+    ]);
+});
 /*
  * Treatments routes
  */
@@ -120,9 +159,29 @@ Route::prefix('aandoeningen')->group(function (){
 Route::prefix('oauth2')->group(function() {
     Route::get('/', [
         'uses' => 'AdminController@index',
-        'icon' => 'fa fa-server',
+        'icon' => 'fa-server',
         'as' => 'Oauth2'
     ]);
+});
+
+
+/*
+ * Settings Route.
+ */
+Route::prefix('instellingen')->group(function (){
+    Route::get('/', [
+        'uses' => 'SettingsController@index',
+        'as' => 'instellingen'
+    ]);
+
+    Route::post('/', 'SettingsController@update');
+});
+
+/**
+ * Ajax Routes
+ */
+Route::prefix('ajax')->group(function () {
+    Route::get('afspraken', 'Ajax\CalendarController@appointments');
 });
 
 /*

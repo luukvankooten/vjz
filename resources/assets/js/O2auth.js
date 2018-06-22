@@ -12,7 +12,3 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
-
-const app = new Vue({
-    el: 'div.body',
-});

@@ -119,7 +119,36 @@ code {
         clear: both;
     }
 }
+.loading {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
 
+    .loader {
+        position: absolute;
+        width: auto;
+        height: 25px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        .spinner {
+            border: 5px solid white;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 2s linear infinite;
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        }
+    }
+
+}
 /**********************************************
  *
  *  The navigation and user image
@@ -206,13 +235,22 @@ code {
         margin: 15px;
 
         .image {
+            position: relative;
             float: left;
+            width: 50px;
+            height: 50px;
             margin-right: @gap-secondary;
+            border-radius: 100%;
+            overflow: hidden;
+
             img {
-                display: block;
-                width: 50px;
-                height: auto;
-                border-radius: 100%;
+                position: absolute;
+                width: auto;
+                height: 100%;
+                min-width: 100%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
             }
         }
 
@@ -531,6 +569,7 @@ div.table, div.form-table {
         .th { font-weight: bold; }
         .td, .th {
             overflow: hidden;
+            &.remaining { flex: 1 0; }
             &.auto-width { flex: 0 0 auto; }
             &.xs-small { flex: 0 0 8%; }
             &.small { flex: 0 0 15%; }
@@ -560,6 +599,7 @@ div.table, div.form-table {
             &.auto-height {
                 height: auto;
                 max-height: none;
+                line-height: normal;
             }
 
             &.agenda-head {
@@ -670,9 +710,8 @@ div.pagination {
 *
 **********************************************/
 div.agenda-item {
-    .info {
-        position: relative;
-    }
+    position: relative;
+    overflow: scroll;
     .date {
         display: inline-block;
         width: 25px;
@@ -682,6 +721,7 @@ div.agenda-item {
         text-align: center;
         border: 2px solid #F5F5F5;
         line-height: 25px;
+        user-select: none;
 
         &.now {
             border-radius: 100%;
@@ -690,11 +730,41 @@ div.agenda-item {
         }
     }
 
-    .day {
+    &.prev, &.next {
+        background-image: url("/images/stripe.png");
+        background-repeat: repeat;
+        .date {
+            color: #C2C2C2;
+            background: white;
+        }
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0px 0px 10px 2px rgba(194,194,194,1);
+        z-index: 9;
+    }
+
+
+}
+
+.profile-picture {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    overflow: hidden;
+
+    > img {
         position: absolute;
-        margin-left: @gap-quaternary;
-        margin-top: @gap-quaternary;
-        font-size: .5em;
-        line-height: normal;
+        width: auto;
+        height: 100%;
+        min-width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
