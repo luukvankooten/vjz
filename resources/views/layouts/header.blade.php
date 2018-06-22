@@ -1,8 +1,8 @@
 <header id="bar">
 
     <!-- Close -->
-    <div id="collapse" class="item">
-        <i class="fa fa-bars"></i>
+    <div id="collapse" class="item" @click="toggle" :class="(expand)? 'expended' : null">
+        <i class="fa"></i>
     </div>
 
     <!-- BreadCrumb -->
@@ -15,11 +15,11 @@
     <!-- Settings -->
     <div class="item right">
         <i class="fa fa-cogs"></i>
-        <a href="#"></a>
+        <a href="{{ route('instellingen') }}"></a>
     </div>
 
     <!-- Logout -->
-    <div id="logout" class="item" v-on:click="$refs.form.submit()">
+    <div id="logout" class="item" @click="$refs.form.submit()">
         <i class="fa fa-sign-out"></i>
         <form method="post" action="{{ route('logout') }}" ref="form">
             @csrf

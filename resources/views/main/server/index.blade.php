@@ -14,5 +14,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('js/O2auth.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/O2auth.js') }}" defer></script>
 @endsection

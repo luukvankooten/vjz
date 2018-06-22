@@ -24,13 +24,13 @@
         Vestigings nummer
     </div>
     <div class="td">
-        <input type="number" name="address[number]" value="{{ old('address.name') }}">
+        <input type="number" name="address[number]" value="{{ old('address.number') }}">
     </div>
     <div class="td label">
         Toevoeging
     </div>
     <div class="td">
-        <input type="text" name="address[affix]" value="{{ old('address.affix') }}">
+        <input type="text" name="address[addition]" value="{{ old('address.addition') }}">
     </div>
 </div>
 <div class="tr">

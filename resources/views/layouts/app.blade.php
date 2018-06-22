@@ -19,17 +19,17 @@
 
 </head>
 <body class="{{ auth()->check()? 'loggedin' : ''}}">
-
-@include('layouts.panel')
-@include('layouts.header')
-<main id="main">
-    @include('errors.errors')
-    @yield('content')
-</main>
-
+<div id="container">
+    @include('layouts.panel')
+    @include('layouts.header')
+    <main id="main">
+        @include('errors.errors')
+        @yield('content')
+    </main>
+</div>
 <!-- Scripts -->
-<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/app.js') }}" async></script>
 @yield('scripts')
 </body>
 </html>

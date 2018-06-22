@@ -40,7 +40,7 @@
                             <div class="td big label">
                                 Omschrijving
                             </div>
-                            <div class="td big">
+                            <div class="td big auto-height">
                                 <textarea type="text" name="description" id="description" rows="3"></textarea>
                             </div>
                         </div>

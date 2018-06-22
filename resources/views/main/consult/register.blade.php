@@ -6,7 +6,7 @@
     <section>
         <div class="body">
             <h1>Consult toevoegen</h1>
-            <form action="{{ url()->current() }}" method="POST">
+            <form action="{{ url()->current() }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <div class="form-table">
@@ -73,6 +73,35 @@
                         </div>
                     </div>
                 @endif
+                <file inline-template>
+                    <div class="form-group">
+                        <div class="form-table">
+                            <div class="tr">
+                                <div class="th">
+                                    Beeldbank
+                                    <i @click="add()" class="fa fa-plus-circle"></i>
+                                </div>
+                            </div>
+                            <div class="tr" v-for="(row, i) in rows">
+                                <div class="td label big">
+                                    Upload bestand
+                                    <i v-if="rows.length > 1" @click="remove(i)" class="fa fa-minus-circle"></i>
+                                </div>
+                                <div class="td">
+                                    <div class="upload-box">
+                                        <label :for="'image_'+i">
+                                            <div class="btn"><i class="fa fa-upload"></i></div>
+                                            <input type="hidden" :value="(row.file === '') ? row.file : null">
+                                            <input type="file" :id="'image_'+ i" name="images[]" accept="image/*"
+                                                   @change="row.file = $event.target.value">
+                                            <span>@{{ (row.file !== null)? file(row.file) : "Geen bestand gekozen" }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </file>
                 <div class="form-group">
                     <div class="form-table">
                         <div class="tr">
@@ -100,7 +129,7 @@
                             <div class="td big label">
                                 <label for="details">Bijzonderheden</label>
                             </div>
-                            <div class="td big">
+                            <div class="td big auto-height">
                                 <textarea rows="3" name="details" id="details">{{ old('details') }}</textarea>
                             </div>
                         </div>
@@ -137,4 +166,34 @@
             </form>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    Vue.component('file', {
+        data() {
+            return {
+                rows: [{"file": null }]
+            }
+        },
+
+        methods: {
+            file: function(path) {
+                return path.replace(/^.+[\\\\\\/]/, '');
+            },
+
+            add: function () {
+                if (this.rows.length < 10) this.rows.push({"file": null});
+            },
+
+            remove: function(row) {
+                this.rows.splice(row, 1);
+            },
+        },
+
+        mounted() {
+            console.log(this.rows);
+        }
+    });
+</script>
 @endsection

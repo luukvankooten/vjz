@@ -1,4 +1,4 @@
-<div id="sidebar" class="expended">
+<div id="sidebar" :class="(expand)? 'expended' : null">
 
     <div class="side-head">
         <!-- Logo -->
@@ -9,7 +9,7 @@
         <div class="user clearfix">
             <!-- User-image -->
             <div class="image">
-                <img src="{{ asset('/images/dummy-profile-pic.png') }}">
+                <img src="{{ $picture }}">
             </div>
 
             <!-- Name -->
@@ -17,8 +17,7 @@
                 <h2>{{ ucfirst(Auth::user()->name) }}</h2>
             </div>
         </div>
-
-        <nav class="items">
+        <nav id="menu" class="items">
             <ul>
                 @include('includes.nav')
             </ul>

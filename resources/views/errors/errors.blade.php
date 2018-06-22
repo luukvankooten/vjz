@@ -1,17 +1,14 @@
-@if($errors->any())
-    <div class="error">
+@if($errors->any() || session('status'))
+    <div class="messages">
         <ul>
-            @foreach ($errors->all() as $error)
-                   <li>{{ ucfirst($error) }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-@if(session('status'))
-    <div class="success">
-        <ul>
-            <li>{{ session('status') }}</li>
+            @if($errors->any())
+                @foreach ($errors->all() as $error)
+                    <li class="error">{{ ucfirst($error) }}</li>
+                @endforeach
+            @endif
+            @if(session()->has('status'))
+                    <li class="success">{{ session('status') }}</li>
+            @endif
         </ul>
     </div>
 @endif
