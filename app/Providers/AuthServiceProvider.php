@@ -51,5 +51,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-treatment', function ($user, $consult) {
             return $user->owns($consult);
         });
+
+        Gate::define('show-file', function ($user, $file){
+            return $user->id === $file;
+        });
     }
 }

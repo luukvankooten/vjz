@@ -431,11 +431,6 @@ header#bar {
         word-break: keep-all;
         text-align: initial;
 
-        @media @mobile {
-            overflow-x: scroll;
-        }
-
-
         a {
             color: white;
             display: inline;
@@ -602,10 +597,6 @@ div.table, div.form-table {
                 line-height: normal;
             }
 
-            &.agenda-head {
-                flex: 0 0 14.2857142857%;
-            }
-
             &.agenda-item {
                 height: 100px;
                 flex: 0 0 14.2857142857%;
@@ -615,6 +606,21 @@ div.table, div.form-table {
                     border-right: 1px solid #F5F5F5;
                 }
 
+                @media @mobile {
+                    flex: 0 0 33.33%;
+
+                    &.current {
+
+                        &:nth-child(7n) {
+                            border-right: unset;
+                        }
+
+                        &:nth-child(3n + 2) {
+                            border-right: 1px solid #F5F5F5;
+                        }
+                    }
+                }
+
             }
 
             > i.fa {
@@ -622,6 +628,15 @@ div.table, div.form-table {
                 margin-right: @gap-quinary;
                 &:last-child { margin-right: 0; }
                 &:hover { color: @color-primary }
+            }
+        }
+        &.agenda-head {
+            .td {
+                flex: 0 0 14.2857142857%;
+            }
+
+            @media @mobile {
+                display: none;
             }
         }
     }
@@ -712,6 +727,7 @@ div.pagination {
 div.agenda-item {
     position: relative;
     overflow: scroll;
+
     .date {
         display: inline-block;
         width: 25px;
@@ -731,8 +747,7 @@ div.agenda-item {
     }
 
     &.prev, &.next {
-        background-image: url("/images/stripe.png");
-        background-repeat: repeat;
+        background: url(/images/stripe.png) repeat;
         .date {
             color: #C2C2C2;
             background: white;
@@ -740,6 +755,10 @@ div.agenda-item {
 
         &:hover {
             box-shadow: none;
+        }
+
+        @media @mobile {
+            display: none;
         }
     }
 
