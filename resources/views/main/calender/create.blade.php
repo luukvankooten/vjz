@@ -48,6 +48,7 @@
             <h1>Afspraak aanmaken</h1>
             <date-time inline-template>
                 <form action="{{ url()->current() }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <div class="form-table">
                             <div class="tr">
@@ -94,6 +95,14 @@
                                     <div class="message">
                                         Dit tijdstip is niet beschikbaar. Kies een ander tijd stip.
                                     </div>
+                                </div>
+                            </div>
+                            <div class="tr">
+                                <div class="td label">
+                                    <label for="title">Titel</label>
+                                </div>
+                                <div class="td">
+                                    <input type="text" name="title" id="title">
                                 </div>
                             </div>
 

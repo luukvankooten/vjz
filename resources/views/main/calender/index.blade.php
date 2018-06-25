@@ -4,6 +4,19 @@
 
 @section('stylesheets')
     <style>
+        @media only screen and (max-width: 600px) {
+            .agenda-head
+        }
+
+        .appointment {
+            overflow-y: scroll;
+            max-height: 66px;
+        }
+
+        .appointment::-webkit-scrollbar {
+            display: none;
+        }
+
         .appointment > div {
             height: 15px;
             box-sizing: border-box;
@@ -14,6 +27,7 @@
             border-radius: 2px;
             line-height: 15px;
             cursor: pointer;
+            margin-bottom: 2px;
         }
     </style>
 @endsection
@@ -33,8 +47,8 @@
                                 <i class="fa fa-chevron-circle-left" @click="remove"></i>
                             </div>
                         </div>
-                        <div class="tr">
-                            <div class="td agenda-head" v-for="day of days">
+                        <div class="tr agenda-head">
+                            <div class="td" v-for="day of days">
                                 @{{ day }}
                             </div>
                         </div>
@@ -46,8 +60,8 @@
                                           date.date.getDate() == cDate.getDate()) ? 'now' : null">
                                         @{{ date.date.getDate() }}
                                     </span>
-                                    <div class="appointment"v-if="date.appointments != null" v-for="appointment in date.appointments">
-                                        <div @click="modal(appointment)">@{{ appointment.title }}</div>
+                                    <div class="appointment" v-if="date.appointments != null" v-for="app in date.appointments">
+                                        <div v-for="a in app"  @click="modal(a)">@{{ a.title }}</div>
                                     </div>
                             </div>
                         </div>
@@ -69,11 +83,15 @@
                                         </div>
                                     </div>
                                     <div class="tr">
-                                        <div class="td label">
+                                        <div class="td label" v-if="appointment.place">
                                             Plaats
                                         </div>
                                         <div class="td" v-if="appointment.place">
-                                            @{{ appointment.place }}
+                                            @{{ appointment.place.establishment }}
+                                            @{{ appointment.place.zip }}
+                                            @{{ appointment.place.street }}
+                                            @{{ appointment.place.number }}
+                                            @{{ (appointment.place.addition) ? appointment.place.addition : null }}
                                         </div>
                                         <div class="td" v-else>
                                             Geen plaats ingevoerd. Neem contact op met uw de behandelaar.
@@ -94,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="tr">
-                                        <div class="td label">
+                                        <div class="td label big">
                                             Omschrijving
                                         </div>
                                         <div class="td big auto-height">
@@ -125,7 +143,6 @@
                     dates: [],
                     months: ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
                     days: ['ZO', 'MA', 'DI', 'WO', 'DO', 'VR', 'ZA'],
-
                 }
             },
             methods: {
@@ -136,7 +153,7 @@
                     this.year = month.getFullYear();
 
                     for (let days = 1; days < month.getDate() + 1; days++) {
-                        var day = new Date(month.getFullYear(), month.getMonth(), days);
+                        let day = new Date(month.getFullYear(), month.getMonth(), days);
 
                         if (days == 1 && day.getDay() != 0) {
                             let pMonth = new Date(day.getFullYear(), day.getMonth(), 0);
@@ -153,6 +170,7 @@
                             }
                         }
                     }
+                    console.log(this.dates[28].appointments);
                 },
 
                 current() {
@@ -187,20 +205,23 @@
                 },
 
                 get(date) {
-                    let time =  date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-                    var data = [];
-                    axios.get('/ajax/afspraken', {
-                        params: {
-                            date: time,
+                    let month = date.getMonth() + 1;
+                    let time =  date.getFullYear() + '-' + month + '-' + date.getDate();
+                    let data = [];
+                    axios.get('/ajax/agenda', {
+                        params : {
+                            date: time.toString(),
                         }
-                    }).then(function(response) {
-                        data.push(response.data);
+                    }).then(response => {
+                        if (response.data !== "")  {
+                            data.push(response.data);
+                        }
                     }).catch(error => {
                         this.error = true;
                         this.errors = error;
                     });
 
-                    return (data.length < 1) ? data : null;
+                    return (data.length <= 1)? data : null;
                 }
             },
 
