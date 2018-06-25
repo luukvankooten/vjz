@@ -89,10 +89,10 @@
                                 </div>
                                 <div class="td">
                                     <div class="upload-box">
-                                        <label :for="'image_'+i">
+                                        <label :for="'file_'+i">
                                             <div class="btn"><i class="fa fa-upload"></i></div>
                                             <input type="hidden" :value="(row.file === '') ? row.file : null">
-                                            <input type="file" :id="'image_'+ i" name="images[]" accept="image/*"
+                                            <input type="file" :id="'file_'+ i" name="files[]" accept=".jpg, .jpeg, .png, .doc, .docx, .docb, .pdf"
                                                    @change="row.file = $event.target.value">
                                             <span>@{{ (row.file !== null)? file(row.file) : "Geen bestand gekozen" }}</span>
                                         </label>

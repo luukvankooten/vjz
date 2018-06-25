@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\{
     Disease, Group, Medicine, Role, Room, User, Consult
 };
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,7 @@ class ConsultController extends Controller
     {
         $this->validator($request->all())->validate();
         $this->create($request->all());
+
         return redirect('consult')->with('status', 'Behandeling aangemaakt.');
     }
 
@@ -59,6 +61,8 @@ class ConsultController extends Controller
             'disease' => 'exists:diseases,id|required|numeric',
             'details' => 'required|string',
             'medicine' => 'exists:medicines,id|required|numeric',
+            'files' => 'max:10',
+            'files.*' => 'file|mimes:jpg,jpeg,png,doc,docx,docb,pdf|max:2048',
             'info.*' => 'sometimes',
             'info.hospital' => 'sometimes|required|exists:groups,id|string',
             'info.bed' => 'sometimes|required|string',
@@ -78,7 +82,7 @@ class ConsultController extends Controller
             'details' => $data['details'],
         ]);
 
-        if (isset($data['info'])) {
+        if (!auth()->user()->hasRole('Huisarts') && isset($data['info'])) {
             $consult->room()->save(
                 new Room([
                     'hospital_id' =>  $data['info']['hospital'],
@@ -99,6 +103,11 @@ class ConsultController extends Controller
                 'practitioner_id' => auth()->user()->id,
             ]
         ]);
+
+        $dir = $user->id.'/consult/'.$consult->id;
+        foreach ($data['files'] as $image) {
+            Storage::putFileAs($dir, $image, $image->getClientOriginalName());
+        }
 
         return $consult;
     }

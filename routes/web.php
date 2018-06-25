@@ -28,7 +28,7 @@ Route::prefix('agenda')->group(function (){
     ]);
 });
 
-Route::prefix('Afspraak')->group(function () {
+Route::prefix('afspraak')->group(function () {
     Route::get('/', [
         'uses' => 'CalendarController@create',
         'icon' => 'fa-calendar-plus-o'
@@ -51,7 +51,7 @@ Route::prefix('statistieken')->group(function (){
  */
 Route::prefix('beeldbank')->group(function (){
     Route::get('/', [
-        'uses' => 'FileController@index',
+        'uses' => 'DocsController@index',
         'icon' => 'fa-files-o',
     ]);
 });
@@ -181,7 +181,8 @@ Route::prefix('instellingen')->group(function (){
  * Ajax Routes
  */
 Route::prefix('ajax')->group(function () {
-    Route::get('afspraken', 'Ajax\CalendarController@appointments');
+    Route::get('agenda', 'Ajax\CalendarController@appointments');
+    Route::get('afspraken', 'Ajax\CalendarController@check');
 });
 
 /*
@@ -190,6 +191,11 @@ Route::prefix('ajax')->group(function () {
 Route::prefix('login')->group(function (){
     Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/', 'Auth\LoginController@login');
+});
+
+
+Route::prefix('bestanden')->group(function() {
+    Route::get('{path}', 'FilesController@show')->where(['path' => '.*']);
 });
 
 
