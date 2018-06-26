@@ -17,5 +17,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .less('resources/assets/less/login.less', 'public/css')
     .less('resources/assets/less/form.less', 'public/css')
     .copyDirectory('resources/assets/fonts', 'public/fonts')
+    .js('resources/assets/js/chart.js', 'public/js')
 
     .browserSync('https://vjz.dev');

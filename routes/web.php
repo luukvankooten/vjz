@@ -18,6 +18,15 @@ Route::prefix('consult')->group(function (){
     Route::post('/', 'ConsultController@store');
 });
 
+Route::prefix('allergieen')->group(function (){
+   Route::get('/', [
+        'uses' => 'AllergyController@create',
+        'icon' => 'fa-universal-access',
+   ]);
+
+   Route::post('/', 'AllergyController@store');
+});
+
 /*
  * Agenda routes
  */
@@ -183,6 +192,7 @@ Route::prefix('instellingen')->group(function (){
 Route::prefix('ajax')->group(function () {
     Route::get('agenda', 'Ajax\CalendarController@appointments');
     Route::get('afspraken', 'Ajax\CalendarController@check');
+    Route::get('statestieken', 'Ajax\ChartController@data');
 });
 
 /*

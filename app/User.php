@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Repositories\{HasRoles, HasPractitioner, HasConsult, HasGroup, HasAddress};
+use App\Repositories\{HasRoles, HasPractitioner, HasConsult, HasGroup, HasAddress, HasAllergy};
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,8 @@ class User extends Authenticatable
         HasPractitioner,
         HasConsult,
         HasGroup,
-        HasAddress;
+        HasAddress,
+        HasAllergy;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +44,7 @@ class User extends Authenticatable
      */
     public function owns($related)
     {
-        return $this->id == $related->id;
+        return $this->id === $related->id;
     }
 
     public static function isAdmin()
